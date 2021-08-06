@@ -29,12 +29,41 @@ def compute_lap(date_list):
             lapL.append(lap)
             t0 = t1
     return lapL
+
 def plot_period(date_list, lap):
+    """
+    Visualize period data using bar plot.
+    Features:
+        - 2 scale options ('all' and 'year'), all is default
+        - color the bars base on the deviation from 28 days (red, yellow and gray)
+        - ...
+    
+    Args:
+    date_list -- data read from period.txt, return value of read_date()
+    lap -- lapse day of each period
+    
+    Returns:
+    Nothing    
+    """
+    
     l = len(date_list)
     x = np.arange(0, l-1)
     ind = np.floor(np.linspace(0, l-2, 4)).astype('int')
+    
+    # generate color list
+    
+    c = []
+    for lap_1 in lap:
+        d = abs(lap_1-28)
+        if d < 2:
+            c.append('#9B99B6')
+        elif d == 2:
+            c.append('#D4D3E2')
+        else:
+            c.append('#93778A')
+    
     fig, ax = plt.subplots(dpi=300)
-    ax.bar(x, lap)
+    ax.bar(x, lap, color=c)
     ax.set_xticks(x[ind])
     ax.set_xticklabels(date_to_month(date_list, ind))
     for i in range(26, 30):
