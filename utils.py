@@ -4,6 +4,29 @@ import dufte
 import numpy as np
 plt.style.use(dufte.style)
 
+class date:
+    """
+    Implement date algebra: add date, subtract two dates
+    
+    '8/7/2021' + 1 = '8/8/2021'
+    '8/8/2021' - '/8/7/2021' = 1
+    """
+    def __init__(self, date_str):
+        self.string = date_str
+        self.format = '%m/%d/%Y'
+        self.struct_time = time.strptime(date_str, self.format)
+    def __add__(self, a):
+        sec = time.mktime(self.struct_time)
+        result = time.localtime(sec+a*24*3600)
+        return time.strftime(self.format, result)
+    def __repr__(self):
+        return self.string
+    def __sub__(self, another_date):
+        assert(type(another_date)==date)
+        t0 = time.mktime(self.struct_time)
+        t1 = time.mktime(another_date.struct_time)
+        return int((t0-t1) / 24 / 3600)
+    
 def read_date(period_dir):
     L = []
     with open(period_dir, 'r') as f:
@@ -13,6 +36,7 @@ def read_date(period_dir):
                 break        
             L.append(a.replace('\n', ''))
     return L
+
 def compute_lap(date_list):
     count = 0
     lapL = []
