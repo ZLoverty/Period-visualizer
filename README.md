@@ -1,2 +1,2 @@
 # Period-visualizer
- Period visualizer
+![](period.jpg)
