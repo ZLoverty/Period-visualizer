@@ -1,3 +1,3 @@
-# Period-visualizer
+### Period-visualizer
 ![](period.jpg)
-[](period.txt)
+[raw data](period.txt)
