@@ -1,6 +1,5 @@
 # %% codecell
 from utils import *
-import numpy as np
 # %% codecell
 period_dir = r'period.txt'
 date_list = read_date(period_dir)
