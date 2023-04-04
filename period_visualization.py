@@ -1,6 +1,5 @@
-# %% codecell
 from utils import *
-# %% codecell
+
 period_dir = r'period.txt'
 date_list = read_date(period_dir)
 lap = compute_lap(date_list)
